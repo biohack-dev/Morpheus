@@ -1,4 +1,4 @@
-# MORPHEUS - Matrix Interface v4.0
+# MORPHEUS - Matrix Interface v5.0.2
 
 ## 📋 Sobre
 IA com personalidade filosófica (Matrix), especialista em sobrevivencialismo, bushcraft e emergências. Interface estilo Matrix com busca de notícias em tempo real e memória persistente.
