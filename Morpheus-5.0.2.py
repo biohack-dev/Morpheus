@@ -50,6 +50,9 @@ TOPICS = {
     "petroleo": "petroleo+preco+opep+corte",
     "greve_caminhoneiros": "greve+caminhoneiro+paralisacao+bloqueio+estrada",
     "virus": "covid+h1n1+h5n1+ebola+hantavirus+surto+viral"
+    "secas": "Secas e Estiagem",
+    "tempestades": "Tempestades e Alagamentos",
+    "terremotos": "Terremotos e Furacões"
 }
 
 # ===== Mapeamento de tópicos para exibição amigável =====
