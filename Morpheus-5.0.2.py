@@ -234,7 +234,7 @@ def get_news(q):
         req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
         xml = urlopen(req).read()
         s = soup(xml, "lxml-xml")
-        items = [i.title.text.split(" - ")[0] for i in s.findAll("item")[:5]]
+        items = [i.title.text.split(" - ")[0] for i in s.findAll("item")[:10]]
         print(f"[NEWS] Encontradas {len(items)} notícias sobre: {q}")
         for idx, item in enumerate(items, 1):
             print(f"[NEWS]   {idx}. {item[:80]}...")
@@ -256,18 +256,18 @@ def get_news_by_topic(topic_key):
         req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
         xml = urlopen(req).read()
         s = soup(xml, "lxml-xml")
-        items = [i.title.text.split(" - ")[0] for i in s.findAll("item")[:5]]
+        items = [i.title.text.split(" - ")[0] for i in s.findAll("item")[:10]]
         
-        while len(items) < 5:
+        while len(items) < 10:
             items.append(f"Notícia adicional sobre {topic_name}")
         
         print(f"[TOPIC] {topic_name}: {len(items)} notícias encontradas")
-        for idx, item in enumerate(items[:5], 1):
+        for idx, item in enumerate(items[:10], 1):
             print(f"[TOPIC]   {idx}. {item[:80]}...")
-        return items[:5]
+        return items[:10]
     except Exception as e:
         print(f"[TOPIC] ERRO ao buscar {topic_key}: {e}")
-        return [f"Erro ao buscar notícias sobre {topic_key}"] * 5
+        return [f"Erro ao buscar notícias sobre {topic_key}"] * 10
 
 def get_world_news():
     """Busca notícias mundiais"""
@@ -337,7 +337,7 @@ def get_all_topics_news():
     for topic_key, news in all_news.items():
         topic_name = TOPIC_NAMES.get(topic_key, topic_key)
         print(f"\n[{topic_name.upper()}] {len(news)} notícias:")
-        for idx, item in enumerate(news[:5], 1):
+        for idx, item in enumerate(news[:10], 1):
             print(f"  {idx}. {item[:80]}...")
     
     return all_news
@@ -366,7 +366,7 @@ def get_current_news_summary():
     for topic_key, news in topics.items():
         topic_name = TOPIC_NAMES.get(topic_key, topic_key)
         summary += f"\n--- {topic_name.upper()} ---\n"
-        for i, n in enumerate(news[:5], 1):
+        for i, n in enumerate(news[:10], 1):
             summary += f"{i}. {n}\n"
     
     print("\n[SYSTEM PROMPT] Resumo de notícias gerado:")
@@ -994,7 +994,7 @@ HTML_TEMPLATE = """
     </div>
 
     <div class="chat-container" id="chatContainer">
-        <div class="message system">
+        <div class="message system" style="display:none;">
             <div class="bubble">
                 > SISTEMA INICIALIZADO<br>
                 > EU SOU MORPHEUS<br>
@@ -1192,7 +1192,7 @@ HTML_TEMPLATE = """
 
 if __name__ == '__main__':
     print("="*60)
-    print("MORPHEUS - Matrix Interface v4.0")
+    print("MORPHEUS - Matrix Interface v5.0.2")
     print("="*60)
     print("\n> SISTEMA INICIALIZADO EM http://localhost:5000")
     print("> PRESSIONE Ctrl+C PARA ENCERRAR\n")
